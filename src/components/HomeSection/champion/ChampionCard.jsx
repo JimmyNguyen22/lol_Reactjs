@@ -28,6 +28,14 @@ export const ChampionCard = (props) => {
     });
 
     document.body.appendChild(newNode);
+
+    const videoUrl = `https://youtube.com/embed/${item.video}`;
+
+    document
+      .querySelector(`#champ-detail-${prop.id} iframe`)
+      .setAttribute("src", videoUrl);
+
+    document.querySelector(`#champ-detail-${prop.id}`).classList.add("active");
   };
 
   return (
