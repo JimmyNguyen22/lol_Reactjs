@@ -1,7 +1,7 @@
 @use "../../scss" as *;
 
 .section {
-  height: 10%;
+  height: 100%;
   overflow: hidden;
   visibility: hidden;
   transition: visibility 1s ease;
@@ -23,6 +23,5 @@
     opacity: 0;
     transition: transform 0.6s ease, opacity 0.5s ease;
     padding-top: $header-height;
-    background-position: left;
   }
 }

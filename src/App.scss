@@ -14,6 +14,7 @@ html,
 body {
   font-size: 100%;
   position: relative;
+  height: 100%;
 }
 
 body {
@@ -99,6 +100,4 @@ iframe {
 .swiper,
 .swiper-slide {
   height: 100%;
-
-  //  @include flex(center, center);
 }

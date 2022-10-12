@@ -14,7 +14,7 @@
   &-info {
     @include flex(flex-start, flex-end);
 
-    .welcome-content {
+    .welcome-box {
       padding-left: 15rem;
       .description {
         font-size: 1rem;
@@ -28,10 +28,11 @@
 
   &-img {
     @include flex(flex-start, flex-start);
-
+    top: -80px;
+    // left: -30px;
     .welcome-slide {
-      height: 700px;
-      width: 700px;
+      height: 915px;
+      width: 915px;
       overflow: hidden;
 
       canvas {

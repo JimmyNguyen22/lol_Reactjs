@@ -1,5 +1,12 @@
-import React from "react";
-import { bg1, champAhri, champAshe, champGaren } from "../../../assets/images";
+import hoverEffect from "hover-effect";
+import { useEffect } from "react";
+import {
+  bg1,
+  champAhri,
+  champAshe,
+  champGaren,
+  distortion,
+} from "../../../assets/images";
 import { Button } from "../../button/Button";
 import HomeSection from "../HomeSection";
 import "./welcome.scss";
@@ -7,6 +14,46 @@ import "./welcome.scss";
 const champImgs = [champAshe, champAhri, champGaren];
 
 const Welcome = (props) => {
+  useEffect(() => {
+    const welcomeImgs = document.querySelectorAll("#welcome-silde > img");
+    let animates = [];
+    welcomeImgs.forEach((item, index) => {
+      let nextImg =
+        welcomeImgs[
+          index === welcomeImgs.length - 1 ? 0 : index + 1
+        ].getAttribute("src");
+      let animation = new hoverEffect({
+        parent: document.querySelector("#welcome-silde"),
+        intensity: 0.5,
+        image1: item.getAttribute("src"),
+        image2: nextImg,
+        displacementImage: distortion,
+        hover: false,
+      });
+      animates.push(animation);
+    });
+    welcomeImgs.forEach((e) => e.remove());
+
+    let currItem = 0;
+
+    const autoImageSlide = () => {
+      let prevItem = currItem;
+      currItem = (currItem + 1) % animates.length;
+
+      if (!document.hidden) {
+        animates[prevItem].next();
+      }
+
+      setTimeout(() => {
+        let canvas = document.querySelectorAll("#welcome-silde > canvas");
+        document.querySelector("#welcome-silde").appendChild(canvas[0]);
+        animates[prevItem].previous();
+      }, 3000);
+    };
+
+    setInterval(autoImageSlide, 3000);
+  }, []);
+
   return (
     <HomeSection
       className={`welcome ${props.isActive ? "active" : ""}`}
@@ -14,7 +61,7 @@ const Welcome = (props) => {
       bgImage={bg1}
     >
       <div className="welcome-info relative">
-        <div className="welcome-content">
+        <div className="welcome-box">
           <div className="title">
             <span>Welcome To</span>
             <h2 className="main-color">Summoner's Rift</h2>
@@ -34,7 +81,7 @@ const Welcome = (props) => {
         </div>
       </div>
       <div className="welcome-img relative">
-        <div className="welcome-slide">
+        <div className="welcome-slide" id="welcome-silde">
           {champImgs.map((item, index) => (
             <img src={item} key={index} />
           ))}
