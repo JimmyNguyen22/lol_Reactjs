@@ -13,7 +13,7 @@ export const ChampionDetail = (props) => {
 
   const onClose = () => {
     document
-      .querySelector(`#champ-detail-${prop.id}`)
+      .querySelector(`#champ-detail-${props.id}`)
       .classList.remove("active");
     iframeRef.current.setAttribute("src", "");
 
@@ -38,6 +38,7 @@ export const ChampionDetail = (props) => {
         <span>
           Role: <span className="second-color">{item.role}</span>
         </span>
+        <br />
         <span>
           Difficulty: <span className="second-color">{item.difficulty}</span>
         </span>

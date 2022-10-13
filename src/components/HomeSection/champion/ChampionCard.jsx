@@ -32,10 +32,10 @@ export const ChampionCard = (props) => {
     const videoUrl = `https://youtube.com/embed/${item.video}`;
 
     document
-      .querySelector(`#champ-detail-${prop.id} iframe`)
+      .querySelector(`#champ-detail-${props.id} iframe`)
       .setAttribute("src", videoUrl);
 
-    document.querySelector(`#champ-detail-${prop.id}`).classList.add("active");
+    document.querySelector(`#champ-detail-${props.id}`).classList.add("active");
   };
 
   return (
